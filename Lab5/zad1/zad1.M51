@@ -1,0 +1,134 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/07/2022  11:05:35  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE zad1.obj TO zad1 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  zad1.obj (ZAD1)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  zad1 (ZAD1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?ZAD1
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0008H     UNIT         ?PR?MAIN?ZAD1
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    009AH     005EH     UNIT         ?PR?TIMER0_ISR?ZAD1
+            CODE    00F8H     0012H     UNIT         ?PR?INITTIMER0?ZAD1
+            CODE    010AH     0008H     UNIT         ?C_INITSEG
+            CODE    0112H     0006H     UNIT         ?PR?INITPWM?ZAD1
+
+
+
+OVERLAY MAP OF MODULE:   zad1 (ZAD1)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?ZAD1
+  +--> ?C_INITSEG
+
+?PR?MAIN?ZAD1
+  +--> ?PR?INITPWM?ZAD1
+
+?PR?INITPWM?ZAD1
+  +--> ?PR?INITTIMER0?ZAD1
+
+
+
+SYMBOL TABLE OF MODULE:  zad1 (ZAD1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/07/2022  11:05:35  PAGE 2
+
+
+
+  -------         MODULE        ZAD1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:009AH         PUBLIC        Timer0_ISR
+  B:00A8H.7       PUBLIC        EA
+  C:0112H         PUBLIC        InitPWM
+  C:0003H         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  D:0008H         PUBLIC        temp
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  C:00F8H         PUBLIC        InitTimer0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:000AH         PUBLIC        PWM
+  B:00A0H.0       PUBLIC        PWM_Pin
+  -------         PROC          INITTIMER0
+  C:00F8H         LINE#         13
+  C:00F8H         LINE#         14
+  C:00F8H         LINE#         15
+  C:00FBH         LINE#         16
+  C:00FEH         LINE#         18
+  C:0101H         LINE#         19
+  C:0103H         LINE#         21
+  C:0105H         LINE#         22
+  C:0107H         LINE#         24
+  C:0109H         LINE#         25
+  -------         ENDPROC       INITTIMER0
+  -------         PROC          INITPWM
+  C:0112H         LINE#         27
+  C:0112H         LINE#         28
+  C:0112H         LINE#         29
+  C:0115H         LINE#         30
+  -------         ENDPROC       INITPWM
+  -------         PROC          TIMER0_ISR
+  C:009AH         LINE#         34
+  C:00A9H         LINE#         36
+  C:00ABH         LINE#         38
+  C:00AEH         LINE#         39
+  C:00AEH         LINE#         40
+  C:00B0H         LINE#         41
+  C:00C8H         LINE#         42
+  C:00C8H         LINE#         43
+  C:00C8H         LINE#         44
+  C:00CAH         LINE#         46
+  C:00CAH         LINE#         47
+  C:00CCH         LINE#         48
+  C:00D7H         LINE#         49
+  C:00E0H         LINE#         50
+  C:00E7H         LINE#         51
+  C:00E7H         LINE#         53
+  C:00E9H         LINE#         54
+  C:00EBH         LINE#         55
+  -------         ENDPROC       TIMER0_ISR
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/07/2022  11:05:35  PAGE 3
+
+
+  C:0003H         LINE#         57
+  C:0003H         LINE#         58
+  C:0003H         LINE#         59
+  C:0006H         LINE#         61
+  C:0009H         LINE#         63
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        ZAD1
+
+Program Size: data=12.0 xdata=0 code=280
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

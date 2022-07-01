@@ -1,0 +1,89 @@
+C51 COMPILER V9.51   ZAD1                                                                  06/07/2022 11:05:35 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE ZAD1
+OBJECT MODULE PLACED IN zad1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE zad1.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #define PWM_Freq_Num   4   
+   3          
+   4          sbit PWM_Pin = P2^0;      
+   5          
+   6          unsigned char PWM = 0;    
+   7          unsigned int temp = 0;  
+   8          
+   9          void InitTimer0(void);
+  10          void InitPWM(void);  
+  11          
+  12          
+  13          void InitTimer0(void)
+  14          {
+  15   1        TMOD &= 0xF0;    
+  16   1        TMOD |= 0x01;    
+  17   1        
+  18   1        TH0 = 0x00;      
+  19   1        TL0 = 0x00;      
+  20   1        
+  21   1        ET0 = 1;        
+  22   1        EA  = 1;         
+  23   1        
+  24   1        TR0 = 1;         
+  25   1      }
+  26          
+  27          void InitPWM(void)
+  28          {
+  29   1        PWM = 0;         
+  30   1        InitTimer0();    
+  31   1      }
+  32          
+  33          
+  34          void Timer0_ISR (void) interrupt 1   
+  35          {
+  36   1        TR0 = 0;    
+  37   1      
+  38   1        if(PWM_Pin) 
+  39   1        {
+  40   2          PWM_Pin = 0;
+  41   2          temp = (255-PWM)*PWM_Freq_Num;
+  42   2          TH0  = 0xFF - (temp>>8)&0xFF;
+  43   2          TL0  = 0xFF - temp&0xFF;  
+  44   2        }
+  45   1        else      
+  46   1        {
+  47   2          PWM_Pin = 1;
+  48   2          temp = PWM*PWM_Freq_Num;
+  49   2          TH0  = 0xFF - (temp>>8)&0xFF;
+  50   2          TL0  = 0xFF - temp&0xFF;
+  51   2        }
+  52   1      
+  53   1        TF0 = 0;     
+  54   1        TR0 = 1;    
+  55   1      }
+C51 COMPILER V9.51   ZAD1                                                                  06/07/2022 11:05:35 PAGE 2   
+
+  56          
+  57          int main(void)
+  58          {
+  59   1         InitPWM();              
+  60   1       
+  61   1         PWM = 33;              
+  62   1      
+  63   1         while(1) {;}
+  64   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    126    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
